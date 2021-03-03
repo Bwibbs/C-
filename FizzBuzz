@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int i;
+
+	for (int i = 1; i <= 100; i++)//loops starts at 1 and ends at 100
+	{
+		if ((i % 3) == 0) {//test if value of i is divisble by 3
+			std::cout << "Fizz\n";
+		}
+		else if ((i % 5) == 0) {//test if value of i is divisble by 5
+			std::cout << "Buzz\n";
+		}
+		else if ((i % 15) == 0)//test if value of i is divisble by 15
+		{
+			std::cout << "FizzBuzz\n";
+		}
+		else { //if value of i is not divisble by 3 or 5 then print value of i
+			std::cout << i << endl;
+		}
+	}
+	return 0;
+}
