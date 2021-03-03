@@ -1,0 +1,139 @@
+#include<iostream>
+#include <time.h>
+#include <stdlib.h>
+#include <ctime>
+#include<string.h>
+#include<chrono>
+using namespace std;
+int i = 0;
+struct call
+{
+	int phno;
+	char date[100];
+	char time[100];
+	int id;
+	char lan[100];
+	struct call *link;
+};
+struct call * front = NULL, *rear = NULL;
+class Queue
+{
+public:
+	void insert();
+	void delcall();
+	void status();
+};
+
+void Queue::insert()
+{
+	struct call *p = new call();
+	srand(time(NULL));
+	time_t curr_time;
+	time_t my_time = time(NULL);
+	tm * curr_tm;
+	time(&curr_time);
+	curr_tm = localtime_s;
+	cout << endl << "Call Details Insertion in the Queue : " << endl;
+	cout << "Enter phone number : ";
+	cin >> p->phno;
+	strftime(p->date, 50, " %B %d, %Y", curr_tm);
+	cout << "The date is : " << p->date << endl;
+	strcpy(p->time, ctime(&my_time));
+	cout << "The time is : " << p->time;
+	cout << "Enter language : ";
+	cin >> p->lan;
+	p->id = (rand() % 10 + 1) + i;
+	i++;
+	p->link = NULL;
+	if (rear == NULL)
+	{
+		front = p;
+	}
+	else
+	{
+		rear->link = p;
+	}
+	rear = p;
+}
+
+void Queue::delcall()
+{
+	if (front == NULL)
+	{
+		cout << endl << "Currently there is no call to be routed to an agent " << endl;
+
+	}
+	else
+	{
+		cout << endl << "Most recent routed call to agent is:" << endl;
+		cout << "Phone Number : " << front->phno << endl;
+		cout << "Date : " << front->date << endl;
+		cout << "Call Time : " << front->time;
+		cout << "Caller id : " << front->id << endl;
+		cout << "Caller Language : " << front->lan << endl;
+		if (front == rear)
+		{
+			front = rear = NULL;
+		}
+		else
+		{
+			front = front->link;
+		}
+	}
+}
+void Queue::status()
+{
+	int j;
+	struct call *temp = front;
+	if (front == NULL)
+		cout << endl << "Currently there is no such call related activity is there" << endl;
+	else
+	{
+		cout << endl << "Caller information details : " << endl;
+		do
+		{
+			cout << endl << "Stored call details are:" << endl;
+			cout << "Phone Number : " << temp->phno << endl;
+			cout << "Date : " << temp->date << endl;
+			cout << "Call Time : " << temp->time;
+			cout << "Caller id : " << temp->id << endl;
+			cout << "Caller Language : " << temp->lan << endl;
+			temp = temp->link;
+			cout << endl;
+		} while (temp != NULL);
+	}
+}
+
+main()
+{
+	cout << " : Automatic Call Distributor or ACD :";
+	cout << endl << "-----------------------------------------------------------" << endl;
+	cout << endl << " a new call has arrived to the queue :";
+	cout << endl << "a call has left the queue (call has been routed to an agent) :";
+	cout << endl << "do nothing (the state of the system remains the same) :" << endl;
+	int p;
+	char ch;
+	Queue ob;
+	do
+	{
+		p = (rand() % 3 + 1);
+		switch (p)
+		{
+		case 1:
+			ob.insert();
+			break;
+
+		case 2:
+			ob.delcall();
+			break;
+
+		case 3:
+			ob.status();
+			break;
+
+		}
+		cout << endl << "Want to continue:[y/Y]:";
+		cin >> ch;
+	} while (ch == 'y' || ch == 'Y');
+
+}
