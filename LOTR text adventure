@@ -1,0 +1,158 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main()
+{
+	string name1 = "Frodo";
+	string name2 = "Sam";
+	string name3 = "Boromir";
+	string name4 = "Faramir";
+	int answer1 = 0;
+	int answerU1 = 0;
+	int answer2 = 0;
+	int answerU2 = 0;
+	int answer3 = 0;
+	int answerU3 = 0;
+	int answer4 = 0;
+	int answerU4 = 0;
+	int yes = 0;
+	int no = 0;
+
+	askTheUser://where goto statement returns to
+	std::cout << "Do you " << name1 << " and you " << name2 << " accept responsibility of the ring?\n";
+	std::cout << "1) yes\n";
+	std::cout << "2) no\n";
+	std::cin >> answer1;
+
+	if (answer1 == 1)
+	{
+		std::cout << "Proceed with the fellowship down the Bruinen River to Amon Hen\n";
+	}
+	else if (answer1 == 2)
+	{
+		std::cout << "The fellowship, and Middle Earth, are doomed.  Game over.\n";
+		std::cout << "\n";
+		std::cout << "Would you like to start over?\n";
+		std::cout << "1) yes\n";
+		std::cout << "2) no\n";
+		std::cin >> answerU1;
+
+		if (answerU1 == 1)//if user answers yes return to askTheUser at line 22.  Otherwise end program.
+		{
+			goto askTheUser;
+		}
+		else
+		{
+			std::cout << "Game Over\n";
+			return 0;
+		}
+		
+	}
+	else
+	{
+		std::cout << "Invalid answer. Please try again.\n";
+	}
+
+	std::cout << "\n";
+	std::cout << name3 << " approaches you.  He desires the one ring.  Do you give it to him?\n";
+	std::cout << "1) yes\n";
+	std::cout << "2) no\n";
+	std::cin >> answer2;
+
+	if (answer2 == 1)
+	{
+		std::cout << "Boromir takes the ring to Minas Tirith and is defeated by Sauron.  Sauron has the ring.  Game over.\n";
+		std::cout << "\n";
+		std::cout << "Would you like to start over?\n";
+		std::cout << "1) yes\n";
+		std::cout << "2) no\n";
+		std::cin >> answerU2;
+
+		if (answerU2 == 1)//if user answers yes return to askTheUser at line 22.  Otherwise end pogram
+		{
+			goto askTheUser;
+		}
+		else
+		{
+			std::cout << "Game Over\n";
+			return 0;
+		}
+	}
+	else if (answer2 == 2)
+	{
+		std::cout << "The fellowship is disbanded.  Ford Amon Hen and walk into Mordor.\n";
+	}
+	else
+	{
+		std::cout << "Invalid answer.  Please try again.\n";
+	}
+
+	std::cout << "\n";
+	std::cout << name4 << " approaches you.  He discovers that you have the one ring.  Do you give it to him?\n";
+	std::cout << "1) yes\n";
+	std::cout << "2) no\n";
+	std::cin >> answer3;
+
+	if (answer3 == 1)
+	{
+		std::cout << "Faramir takes the ring to Minas Tirith to have it locked away.  Sauron lives.  Game over.\n";
+		std::cout << "Would you like to start over?\n";
+		std::cout << "1) yes\n";
+		std::cout << "2) no\n";
+		std::cin >> answerU3;
+
+		if (answerU3 == 1)//if user answers yes return to askTheUser at line 22.  Otherwise end program.
+		{
+			goto askTheUser;
+		}
+		else
+		{
+			std::cout << "Game Over\n";
+			return 0;
+		}
+	}
+	else if (answer3 == 2)
+	{
+		std::cout << "Faramir lets you leave.  You proceed to Mordor and the Crack of Doom.\n";
+	}
+	else
+	{
+		std::cout << "Invalid answer.  Please try again.\n";
+	}
+
+	std::cout << "\n";
+	std::cout <<"You have reached the Crack of Doom.  Do you throw the ring into the fire?\n";
+	std::cout << "1) yes\n";
+	std::cout << "2) no\n";
+	std::cin >> answer4;
+
+	if (answer4 == 1)
+	{
+		std::cout << "Sauron has been defeated.  Middle Earth has been saved.  Victory!\n";
+	}
+	else if (answer4 == 2)
+	{
+		std::cout << "Sauron survives and takes the ring from you.  Middle Earth is doomed.  Game over.\n";
+		std::cout << "Would you like to start over?\n";
+		std::cout << "1) yes\n";
+		std::cout << "2) no\n";
+		std::cin >> answerU4;
+
+		if (answerU4 == 1)//if user answers yes return to askTheUser at line 22.  Otherwise end program.
+		{
+			goto askTheUser;
+		}
+		else
+		{
+			std::cout << "Game Over\n";
+			return 0;
+		}
+	}
+	else
+	{
+		std::cout << "Invalid answer.  Please try again.\n";
+	}
+
+	return 0;
+}
