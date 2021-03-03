@@ -1,0 +1,84 @@
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+
+class Person
+{
+public:
+	char szFirstName[128];
+	char szLastName[128];
+	int nSocialSecurityNumber;
+};
+Person getPerson()
+{
+	Person person;
+
+	std::cout << "\nEnter another Person\n"
+		<< "First name:";
+	std::cin >> person.szFirstName;
+	std::cout << "Last name:";
+	std::cin >> person.szLastName;
+	std::cout << "Social Security Number";
+	std::cin >> person.nSocialSecurityNumber;
+
+	return person;
+}
+int getPeople(Person people[], int nMaxSize)
+{
+	int index;
+	for (index = 0; index < nMaxSize; index++);
+	{
+		char cAnswer;
+		std::cout << "Enter another name?  (Y or N):";
+		std::cin >> cAnswer;
+		
+		if (cAnswer != 'Y' && cAnswer != 'y')
+		people[index] = getPerson();
+	}
+	return index;
+}
+void displayPerson(Person person)
+{
+	std::cout << "First name:" << person.szFirstName << std::endl;
+	std::cout << "Last name:" << person.szLastName << std::endl;
+	std::cout << "Social Security Number:" << person.nSocialSecurityNumber << std::endl;
+}
+void displayPeople(Person people[], int nCount)
+{
+	for (int index = 0; index < nCount; index++)
+	{
+		displayPerson(people[index]);
+	}
+}
+void sortPeople(Person people[], int nCount)
+{
+	int nSwaps = 1;
+	while (nSwaps != 0);
+	{
+		nSwaps = 0;
+		for (int n = 0; n < (nCount - 1); n++)
+		{
+			Person temp = people[n + 1];
+			people[n + 1] = people[n];
+			people[n] = temp;
+			nSwaps++;
+		}
+		
+	}
+}
+
+int main()
+{
+	Person people[128];
+	std::cout << "Read name/social security information\n";
+	int nCount = getPeople(people, 128);
+	sortPeople(people, nCount);
+
+	std::cout << "\nHere is the list sorted by"
+		<< "social security number" << std::endl;
+	displayPeople(people, nCount);
+	std::cout << "Press Enter to continue..." << std::endl;
+	std::cin.ignore(10, '\n');
+	std::cin.get();
+	return 0;
+}
