@@ -1,0 +1,153 @@
+Stack.cpp
+/*******************************
+*  Week 2 lesson:              *
+*   a simple Stack class       *
+*******************************/
+#include <iostream>
+#include "Header.h"
+
+using namespace std;
+
+/*
+* Constructor. Initializes the stack.
+*/
+
+Stack::Stack()
+{
+	top = 0;
+}
+
+/*
+* Determines whether the stack is empty.
+*
+* Returns true if the stack is empty, false otherwise.
+*/
+
+bool Stack::isEmpty()
+{
+	return top == 0;
+}
+
+/*
+* Adds an element to the top of the stack.
+*
+* x: element to be added to the stack.
+*/
+
+void Stack::push(char x)
+{
+	if (top == SIZE)
+	{
+		cout << "ERROR: Cannot insert item.  Stack is full." << endl;
+		return;
+	}
+	list[top] = x;
+	top++;
+}
+
+/*
+* Removes the element at the top of the stack.
+*/
+
+void Stack::pop()
+{
+	if (isEmpty())
+	{
+		cout << "ERROR: Stack is empty." << endl;
+	}
+	top--;
+}
+
+/*
+* Returns the element at the top of the stack. Does not remove it.
+*/
+
+char Stack::peek()
+{
+	if (isEmpty())
+	{
+		cout << "ERROR: Stack is empty." << endl;
+	}
+	return list[top - 1];
+}
+
+/*
+* Returns the size of the stack.
+*/
+
+int Stack::getSize()
+{
+	return SIZE;
+}
+
+Source.cpp
+/*******************************
+*  Week 2 lesson:              *
+*   a simple Stack class       *
+*******************************/
+
+#include <iostream>
+#include "Header.h"
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+	Stack s;
+
+	cout << "Insertion of 10 characters in s" << endl;
+	for (int i = 0; i < s.getSize(); i++)
+	{
+		char x = 32 + rand() % 95;
+		cout << x << endl;
+		s.push(x);
+	}
+	cout << endl;
+	cout << "Attempting to insert 1 more character into the stack" << endl;
+	s.push('b');
+
+	cout << endl
+		<< "Displaying and deleting elements from s" << endl;
+	while (!s.isEmpty())
+	{
+		cout << "Item at the top: " << s.peek() << endl;
+
+		s.pop();
+	}
+	cout << "Attempting to remove one more item from the stack" << endl;
+	s.pop();
+
+	cout << endl << "Attempting to get the element that is on top of the stack" << endl;
+	cout << "Item at the top: " << s.peek() << endl;
+
+	return 0;
+}
+
+Header.h
+/*******************************
+*  Week 2 lesson:              *
+*   a simple Stack class       *
+*******************************/
+
+/*
+* Class implementing a Stack ADT.
+*/
+
+class Stack
+{
+public:
+	Stack();
+	bool isEmpty();
+	void push(char);
+	void pop();
+	char peek();
+	int getSize();
+
+private:
+	static const int SIZE = 10;
+	char list[SIZE];
+	int top;
+};
+
+
