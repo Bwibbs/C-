@@ -1,0 +1,82 @@
+#include <iostream>
+
+#include <ctime>
+
+using namespace std;
+
+int thirdSmallest(int a[], int length)
+
+{
+
+	if (length == 0) {
+
+		return -1;
+
+	}
+
+	int first, second, third;
+
+	first = a[0];
+
+	second = a[0];
+
+	third = a[0];
+
+	for (int i = 1; i < length; i++)
+
+	{
+
+		if (a[i] < first) {
+
+			third = second;
+
+			second = first;
+
+			first = a[i];
+
+		}
+
+		else if (a[i] < second) {
+
+			third = second;
+
+			second = a[i];
+
+		}
+
+		else if (a[i] < third) {
+
+			third = a[i];
+
+		}
+
+	}
+
+	return third;
+
+}
+
+
+
+
+int main() {
+
+	srand(time(NULL));
+
+	int arrSize = 10;
+
+	int a[arrSize];
+
+	cout << "Array : ";
+
+	for (int i = 0; i < arrSize; i++) {
+
+		a[i] = rand() % 100;
+
+		cout << a[i] << " ";
+
+	}
+
+	cout << endl << "Third smallest number is " << thirdSmallest(a, arrSize);
+
+}
