@@ -1,0 +1,124 @@
+Main.cpp
+/*******************************
+*  Week 2 lesson:              *
+*   a simple Queue class       *
+*******************************/
+
+#include "Queue.h"
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	Queue q;
+
+	cout << "Insertion of 10 characters in q" << endl;
+	for (int i = 0; i < q.getSize(); i++)
+	{
+		char x = 32 + rand() % 95;
+		cout << x << endl;
+		q.enqueue(x);
+	}
+
+	cout << endl
+		<< "Displaying and deleting elements from q" << endl;
+	while (!q.isEmpty())
+	{
+		cout << "Item at the front: " << q.getFront() << endl;
+		q.dequeue();
+	}
+
+	return 0;
+}
+
+Queue.cpp
+/*******************************
+*  Week 2 lesson:              *
+*   a simple Queue class       *
+*******************************/
+
+#include "Queue.h"
+
+/*
+* Constructor. Initializes the queue.
+*/
+Queue::Queue()
+{
+	front = 0;
+	back = SIZE - 1;
+	count = 0;
+}
+
+/*
+* Determines whether the queue is empty.
+*
+* Returns true if the queue is empty, false otherwise.
+*/
+bool Queue::isEmpty()
+{
+	return count == 0;
+}
+
+/*
+* Adds an element to the back of the queue.
+*
+* x: element to be added to the queue.
+*/
+void Queue::enqueue(char x)
+{
+	back = (back + 1) % SIZE;
+	list[back] = x;
+	count++;
+}
+
+/*
+* Removes the element in the front of the queue.
+*/
+void Queue::dequeue()
+{
+	front = (front + 1) % SIZE;
+	count--;
+}
+
+/*
+* Returns the element in the front of the queue. Does not remove it.
+*/
+char Queue::getFront()
+{
+	return list[front];
+}
+
+/*
+* Returns the size of the queue.
+*/
+int Queue::getSize()
+{
+	return SIZE;
+}
+
+queue.h
+/*******************************
+*  Week 2 lesson:              *
+*   a simple Queue class       *
+*******************************/
+
+/*
+* Class implementing a Queue ADT.
+*/
+class Queue
+{
+public:
+	Queue();
+	bool isEmpty();
+	void enqueue(char);
+	void dequeue();
+	char getFront();
+	int getSize();
+
+private:
+	static const int SIZE = 10;	//size of the queue array
+	char list[SIZE];			//array to store the queue items
+	int count;					//number of items in the queue
+	int front, back;			//front and back locations
+};
